@@ -16,6 +16,7 @@ class Classroom(Environment):
         
         # Init time in classroom
         self.class_time = time.time()
+        print("il est",self.class_time)
         
         # Init variables
         self.lum = 0
@@ -27,5 +28,8 @@ class Classroom(Environment):
     def set_lum(self, lum):
         self.lum = lum
 
-    def get_lum(self,lum)
+    def get_lum(self):
         return lum   
+
+
+t = Classroom(0,0)

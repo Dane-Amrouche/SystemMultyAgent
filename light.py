@@ -1,7 +1,6 @@
-from pyAmakCore.classes.communicating_agent import CommunicatingAgent
+from pyAmakCore.classes.agent import Agent
 
-
-class SmartLight(CommunicatingAgent):
+class SmartLight(Agent):
     
     
     def __init__(self,posX: float = 0,posY: float =0,niv_lum = 0):
@@ -20,13 +19,12 @@ class SmartLight(CommunicatingAgent):
     def get_niv_lum(self):
         return self.get_niv_lum
 
-    def light_on_subscribe(self):
+    def on_perceive(self):
     	#souscrir sur le topic salle/luminosité
     	pass
 
-    def light_on_message(self):
+    def on_act(self):
     	#ajuster la luminosité en fonction des capteurs 
     	#self.niv_lum=100-sensorLightLvl (valeur_envoyee_par_LightSensor
-    	#a definir plutard
-
+    	#a definir plutards
         pass

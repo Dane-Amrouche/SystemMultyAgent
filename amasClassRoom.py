@@ -1,5 +1,5 @@
 #my amas
-from pyAmakCore.classes.environment import Environment
+
 from pyAmakCore.classes.amas import Amas
 from classroom import Classroom
 from light import SmartLight
@@ -26,19 +26,22 @@ class MyAmas(Amas):
     def on_initialization(self):
         print("intialized AMAS")
     
-    def gaussian(x, mu, sig):
+    def gaussian(self, x, mu, sig):
         return np.exp(-np.power(x - mu, 2.) / (2 * np.power(sig, 2.)))
 
     def niv_lum(self):
-         # mesure toute les 20 min (900min/20min=45) 
-        x_values = np.linspace(7, 22, 45)
+         # mesure toute les 20 min (660min/20min=33) 
+        x_values = np.linspace(7, 18, 33)
         for x_val in x_values:
-            self.res.append(self.gaussian(x_val, 12, 1.8))
-        
+            self.global_bright.append(self.gaussian(x_val, 12, 1.7))
+        print(self.global_bright)
 
     def on_cycle_begin(self):
-        self.__environment.set_lum(self.global_brightness[self.current_time_index])
+        self.__environment.set_lum(self.global_bright[self.current_time_index])
 
     def on_cycle_end(self):
         pass
-    
+
+c=Classroom(0,1)
+t = MyAmas(c)
+t.niv_lum()
