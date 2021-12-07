@@ -1,15 +1,18 @@
 from pyAmakCore.classes.agent import Agent
 
 
+
 class Shutters(Agent):
     
     
-    def __init__(self,posX: float = 0,posY: float =0,openlvl =100):
+    def __init__(self,amas,posX: float = 0,posY: float =0,openlvl =100):
         super().__init__(amas)
         self.posX = posX
         self.posY = posY
         self.openlvl = openlvl
         self.sensorLightLvl=0
+        self.current_time = 0
+        self.status="Close"
 
     def get_posX(self):
         return self.posX
@@ -20,12 +23,16 @@ class Shutters(Agent):
     def get_openlvl(self):
         return self.get_openlvl
 
-    def on_perceive(self):  #on_subscribe
-    	#souscrir sur le topic salle/luminosité
-    	pass
+    def on_perceive(self) -> None:
+        print("on_perceive Shutters")
+        self.current_time+=1
+        self.on_act()
+
 
     def on_act(self):
-    	#ajuster l'ouverture ou la fermeture des shutters en fonction des capteurs de luminosite 
-    	#self.openlvl= self.sensorLightLvl
-    	#a definir plutard
-        pass
+        if self.current_time < 33:
+            self.status="Open"
+            print("Status",self.status)
+        else:
+            self.status="Close"    
+            print("Status",self.status)
