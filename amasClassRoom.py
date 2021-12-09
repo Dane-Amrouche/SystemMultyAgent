@@ -5,7 +5,7 @@ from pyAmakCore.classes.amas import Amas
 from classroom import Classroom
 from light import SmartLight
 from shutters import Shutters
-
+import time
 
 
 class MyAmas(Amas):
@@ -15,7 +15,6 @@ class MyAmas(Amas):
 
     def __init__(self,environment : Classroom):
         super().__init__(environment)
-        #self.env = environment
         print("created AMAS")
     
         
@@ -29,11 +28,11 @@ class MyAmas(Amas):
         agents=[]
        
         for i in range(6):
-            print("Create agent %d", i)
+            print("Create agent Smart_Light", i)
             agents.append(SmartLight(self)) 
 
         for i in range(4):
-            print("Create agent %d", i)
+            print("Create agent Shutters", i)
             agents.append(Shutters(self))     
         
 
@@ -44,22 +43,27 @@ class MyAmas(Amas):
 
 
     def on_cycle_begin(self):
-        for j in range(34):
+        print("Launch agent light")
+        print("Launch agent shutters")
+        for i in range(33):
+            #time.sleep(0.5)
             self.get_environment().on_cycle_begin()
+            
             for x in self.get_agents() :
-                print("Launch agent light")
                 x.on_cycle_begin()
 
+            
             for x in self.get_agents() :
-                print("Launch agent shutters")
-                x.on_perceive()    
+                x.on_perceive() 
+           
         self.on_cycle_end()
+        
 
 
     def on_cycle_end(self) -> None:
         print("on_cycle_end amas") 
-        for i in range(34) :
-            print("current_time {} ,lum {}".format(i ,Classroom.global_bright[i]))
+        #for i in range(34) :
+         #   print("current_time {} ,Light_Level {}".format(i ,Classroom.global_bright[i]))
 
 t = Classroom()
 c=MyAmas(t)

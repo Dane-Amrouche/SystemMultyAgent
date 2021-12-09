@@ -44,7 +44,7 @@ class Classroom(Environment):
 
         if self.current_time < 33:
             self.set_lum(self.global_bright[self.current_time])
-            print("current_time {} ,lum {}".format(self.current_time,self.lum))
+           # print("current_time {} ,lum {}".format(self.current_time,self.lum))
             self.current_time +=1
      
     def on_cycle_end(self):
