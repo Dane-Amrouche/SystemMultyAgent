@@ -23,6 +23,12 @@ class Shutters(Agent):
     def get_openlvl(self):
         return self.get_openlvl
 
+#    def on_cycle_begin(self):
+ #       print("on cycle begin Shetters")
+  #      self.on_perceive()
+   # def on_cycle_end(self) -> None:
+    #    print("Agent Shutters Cycle finished")
+
     def on_perceive(self) -> None:
         print("on_perceive Shutters")
         self.current_time+=1
@@ -30,7 +36,7 @@ class Shutters(Agent):
 
 
     def on_act(self):
-        if self.current_time < 33:
+        if self.current_time < 33 :
             self.status="Open"
             print("Status",self.status)
         else:

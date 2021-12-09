@@ -4,6 +4,7 @@ from light import SmartLight
 from pyAmakCore.classes.amas import Amas
 from classroom import Classroom
 from light import SmartLight
+from shutters import Shutters
 
 
 
@@ -26,19 +27,32 @@ class MyAmas(Amas):
 
     def on_initial_agents_creation(self):
         agents=[]
-        for i in range(8):
+       
+        for i in range(6):
             print("Create agent %d", i)
             agents.append(SmartLight(self)) 
+
+        for i in range(4):
+            print("Create agent %d", i)
+            agents.append(Shutters(self))     
+        
+
         self.add_agents(agents)
         self.add_pending_agent()
+
     
 
+
     def on_cycle_begin(self):
-        for i in range(34):
+        for j in range(34):
             self.get_environment().on_cycle_begin()
             for x in self.get_agents() :
-                print("Launch agent")
+                print("Launch agent light")
                 x.on_cycle_begin()
+
+            for x in self.get_agents() :
+                print("Launch agent shutters")
+                x.on_perceive()    
         self.on_cycle_end()
 
 
