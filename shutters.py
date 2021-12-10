@@ -37,13 +37,15 @@ class Shutters(Agent):
 
 
     def on_act(self):
-
-        if self.current_time <= 18 :
+        # if time <= 18h
+        if self.current_time <= 32 :
             self.status="Open"
+            # la valeur 0 <==> 7h
             if self.current_time==0:
                 print("Status",self.status, " à ","7 h")
         else:
             self.status="Close" 
+            # la valeur 32 <==> 18h
             if self.current_time==33:
                 print("Status",self.status, " à "," 19 h")
 
